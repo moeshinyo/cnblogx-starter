@@ -33,8 +33,8 @@ module.exports = (env, argv) => {
         devServer: {
             allowedHosts: 'all',
             port: DEV_SERVER_PORT,
-            hot: 'only',
             host: 'localhost',
+            hot: true, 
             headers: {
                 'Access-Control-Allow-Origin': '*',
             },
@@ -104,13 +104,13 @@ module.exports = (env, argv) => {
             }),
             new webpack.DefinePlugin({
                 __TAG_CUSTOM_HTML: JSON.stringify(TAG_CUSTOM_HTML),
-                __CUSTOM_OUTPUT_HTML: JSON.stringify(CUSTOM_OUTPUT_HTML),
                 __DEV_SERVER_PORT: JSON.stringify(`${DEV_SERVER_PORT}`),
+                __CUSTOM_OUTPUT_HTML: JSON.stringify(CUSTOM_OUTPUT_HTML),
             }),
             new HtmlWebpackSkipAssetsPlugin({
                 excludeAssets: []
                     .concat(STANDALONE_CSS ? [CUSTOM_OUTPUT_CSS] : [])
-                    .concat(STANDALONE_JS ? [CUSTOM_OUTPUT_JS] : []),
+                    .concat(STANDALONE_JS ? [CUSTOM_OUTPUT_JS] : []), 
             }),
         ],
         optimization: {
