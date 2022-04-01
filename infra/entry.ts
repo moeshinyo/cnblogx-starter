@@ -15,8 +15,8 @@ declare global {
     const __TAG_CUSTOM_HTML: string;
 }
 
-const ID_DEV_ROOT = '__blog-custom-dev-root';
-const IN_DEV_MODE = document.querySelector(`#${ID_DEV_ROOT}`);
+const CLS_DEV_ROOT = '__blog-custom-dev-root';
+const IN_DEV_MODE = document.querySelector(`.${CLS_DEV_ROOT}`);
 
 if (!window.cdev) {
     Object.defineProperty(window, 'cdev', {
@@ -50,18 +50,22 @@ if (!window.cdev() || IN_DEV_MODE) {
     xhr.open('GET', `http://localhost:${__DEV_SERVER_PORT}/${__CUSTOM_OUTPUT_HTML}`);
     xhr.onload = () => {
         if (xhr.readyState === xhr.DONE) {
-            document.querySelector(`#${__TAG_CUSTOM_HTML}`)?.remove();
+            const tmp = document.querySelector(`#${__TAG_CUSTOM_HTML}`);
             document.querySelector(`link[href*='custom.css']`)?.remove();
 
-            const root = document.createElement('div');
-            root.innerHTML = xhr.response;
-            root.id = ID_DEV_ROOT;
-            document.body.appendChild(root);
+            tmp.removeAttribute('id');
+            tmp.innerHTML = xhr.response;
 
+            const root = tmp.firstElementChild;
+            tmp.replaceWith(root);
+
+            root.classList.add(CLS_DEV_ROOT);
             root.querySelectorAll('script').forEach((dummy) => {
                 const script = document.createElement('script');
+
                 script.src = dummy.src;
-                document.body.appendChild(script);
+                script.defer = true;
+                dummy.parentElement.insertBefore(script, dummy);
             });
         }
     };
