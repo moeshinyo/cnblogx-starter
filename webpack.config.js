@@ -13,10 +13,10 @@ module.exports = (env, argv) => {
     const MODE_PRODUCTION = argv.mode === 'production';
     const STANDALONE_JS = MODE_PRODUCTION && env.STANDALONE_JS;
     const STANDALONE_CSS = MODE_PRODUCTION && env.STANDALONE_CSS;
+    const DEV_SERVER_PORT = env.PORT ? env.PORT : 6454;
     const TAG_CUSTOM_HTML = '__blog-custom-html';
 
     const CUSTOM_BANNER = fs.readFileSync('./BANNER.txt', 'utf8');
-    const DEV_SERVER_PORT = 6454;
     const CUSTOM_OUTPUT_HTML = 'custom.html';
     const CUSTOM_OUTPUT_CSS = 'custom.css';
     const CUSTOM_OUTPUT_JS = 'custom.js';
