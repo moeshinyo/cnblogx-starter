@@ -22,7 +22,7 @@ npm install
    npm run build
    ```
 
-2. 将`dist/`下的生成物复制到*[博客园-管理-设置](<https://i.cnblogs.com/settings>)*的对应选项中：
+2. 将`dist/`下的生成物复制到[博客园-管理-设置](<https://i.cnblogs.com/settings>)的对应选项中：
 
    - 将`custom.css`的内容复制到*页面定制CSS代码*中。
    - 将`custom.html`的内容复制到*页脚HTML代码*中。
@@ -63,7 +63,7 @@ npm run <script> -- [--env <options>[=<value>]] ...
 
 - `dev`：为调试环境编译：启动本机服务器，监视代码变化并及时更新模块。
 - `build`：为生产环境编译：期望应用到博客园设置时的选择。
-- `packed`：为生产环境编译，默认将所有代码打包为单个`html`文件。
+- `packed`：为生产环境编译，默认将所有代码打包为单个`.html`文件。
 
 其中`<options>`，为以下任意值：
 
@@ -82,7 +82,7 @@ npm run <script> -- [--env <options>[=<value>]] ...
 
   ---
 
-- `STANDALONE_JS`：单独打包`js`文件。
+- `STANDALONE_JS`：单独打包`.js`文件。
 
   - `<value>`为空或`NOREF`。
   - 适用于**为生产环境编译**。
@@ -96,7 +96,7 @@ npm run <script> -- [--env <options>[=<value>]] ...
 
   ---
 
-- `STANDALONE_CSS`：单独打包`css`文件。
+- `STANDALONE_CSS`：单独打包`.css`文件。
 
   - `<value>`为空或`NOREF`。
   - 适用于**为生产环境编译**。
@@ -134,4 +134,3 @@ npm run <script> -- [--env <options>[=<value>]] ...
   # 退出开发者模式。
   cnblogx_development(false);
   ```
-  
