@@ -24,7 +24,7 @@ declare global {
 if (!window.cnblogx_development || window.__cnblogx_stage === undefined) {
     
     Object.defineProperty(window, 'cnblogx_development', {
-        value: (enable: boolean) => {
+        value: (enable?: boolean) => {
             const KEY_CUSTOM_DEV_MODE = '__blog-custom-dev-mode';
             
             if (enable === undefined) {
@@ -55,10 +55,10 @@ switch (window.__cnblogx_stage) {
     }
     case STAGE_T.LOCAL: {
         const askForExit = () => {
-            if (window.confirm('开发者模式：与本机服务器通信失败，是否退出开发者模式？')) {
-                window.cnblogx_development(false);
-            } else {
+            if (window.confirm('开发者模式：与本机服务器通信失败，是否重试？')) {
                 window.location.reload();
+            } else {
+                window.cnblogx_development(false);
             }
         };
         const xhr = new XMLHttpRequest();

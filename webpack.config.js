@@ -10,18 +10,26 @@ const path = require('path');
 const fs = require('fs');
 
 module.exports = (env, argv) => {
+    const TAG_CUSTOM_HTML = '__blog-custom-html';
     const MODE_PRODUCTION = argv.mode === 'production';
+    
+    // 可配置环境变量
     const STANDALONE_JS = MODE_PRODUCTION && env.STANDALONE_JS;
     const STANDALONE_CSS = MODE_PRODUCTION && env.STANDALONE_CSS;
+    const PUBLIC_PATH = env.PUBLIC_PATH ?? '';
     const DEV_SERVER_PORT = env.PORT ? env.PORT : 6454;
-    const TAG_CUSTOM_HTML = '__blog-custom-html';
 
+    const TAG_NOREF = 'NOREF';
+    const HTML_NOREF_CSS = STANDALONE_CSS && env.STANDALONE_CSS === TAG_NOREF;
+    const HTML_NOREF_JS = STANDALONE_JS && env.STANDALONE_JS === TAG_NOREF;
+
+    // 输入与输出
     const CUSTOM_BANNER = fs.readFileSync('./BANNER.txt', 'utf8');
     const CUSTOM_OUTPUT_HTML = 'custom.html';
     const CUSTOM_OUTPUT_CSS = 'custom.css';
     const CUSTOM_OUTPUT_JS = 'custom.js';
-    const PUBLIC_PATH = '';
 
+    
     const config = {
         target: 'browserslist',
         entry: './infra/entry.ts',
@@ -109,8 +117,8 @@ module.exports = (env, argv) => {
             }),
             new HtmlWebpackSkipAssetsPlugin({
                 excludeAssets: []
-                    .concat(STANDALONE_CSS ? [CUSTOM_OUTPUT_CSS] : [])
-                    .concat(STANDALONE_JS ? [CUSTOM_OUTPUT_JS] : []), 
+                    .concat(HTML_NOREF_CSS ? [CUSTOM_OUTPUT_CSS] : [])
+                    .concat(HTML_NOREF_JS ? [CUSTOM_OUTPUT_JS] : []), 
             }),
         ],
         optimization: {

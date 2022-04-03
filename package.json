@@ -4,11 +4,9 @@
   "description": "",
   "private": true,
   "scripts": {
-    "none": "webpack --mode=none",
     "dev": "webpack serve --mode=development",
-    "build": "webpack --mode=production --env STANDALONE_CSS",
-    "packed": "webpack --mode=production",
-    "standalone": "webpack --mode=production --env STANDALONE_CSS --env STANDALONE_JS"
+    "build": "webpack --mode=production --env STANDALONE_CSS=NOREF",
+    "packed": "webpack --mode=production"
   },
   "keywords": [],
   "author": "",
