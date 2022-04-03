@@ -63,27 +63,29 @@ npm run <script> -- [--env <options>[=<value>]] ...
 
 其中`<script>`为以下任意值：
 
-- `dev`：为调试环境编译：启动本地服务器，监视代码变化并及时更新模块。
+- 为调试环境编译：
 
-  ```bash
-  npm run dev
-  ```
+  - `dev`：启动本地服务器，监视代码变化并及时更新模块。
 
-  ---
+    ```bash
+    npm run dev
+    ```
 
-- `build`：为生产环境编译：期望应用到博客园设置时的选择。
+- 为生产环境编译：
 
-  ```bash
-  npm run build
-  ```
+  - `build`：希望将代码应用到博客的推荐方式。
 
-  ---
+    - 将代码分别打包为`.css`与`.html`文件，对应*页面定制CSS代码*与*页脚HTML代码*。
 
-- `packed`：为生产环境编译，默认将所有代码打包为单个`.html`文件。
+    ```bash
+    npm run build
+    ```
 
-  ```bash
-  npm run packed
-  ```
+  - `packed`：基础配置，默认将所有代码打包为一个`.html`文件。
+
+    ```bash
+    npm run packed
+    ```
 
 ---
 
