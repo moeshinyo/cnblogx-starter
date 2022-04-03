@@ -108,6 +108,8 @@ npm run <script> -- [--env <options>[=<value>]] ...
   npm run packed -- --env STANDALONE_CSS=NOREF 
   ```
   
+  ---
+  
 - `PUBLIC_PATH`：在`.html`引入`.css`或`.js`文件时，被用于指定资源路径。
 
   - `<value>`为一个URL。
@@ -118,7 +120,7 @@ npm run <script> -- [--env <options>[=<value>]] ...
   npm run packed -- --env STANDALONE_JS --env PUBLIC_PATH="mywebsite.com/scripts/"
   ```
 
-## 浏览器命令
+## 控制台命令
 
 以下命令可在浏览器的控制台中执行：
 
