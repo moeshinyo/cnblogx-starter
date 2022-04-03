@@ -40,7 +40,7 @@ npm install
 
 2. 在浏览器中打开自己的博客，双击页脚的*Copyright © 你的名字*，进入开发者模式。
 
-3. 编辑`src/`下对应的文件代码：
+3. 在`src/`下对应的文件中编写代码：
 
    - `main.ejs`：HTML/EJS（兼容，后缀不可更改）。
    - `main.js`：Javascript/Typescript（后缀可更改）。
