@@ -19,6 +19,7 @@ declare global {
     const __DEV_SERVER_PORT: string;
     const __TAG_CUSTOM_HTML: string;
     const __CUSTOM_OUTPUT_HTML: string;
+    const __PRESERVE_CSS: string;
 }
 
 if (!window.cnblogx_development || window.__cnblogx_stage === undefined) {
@@ -55,7 +56,7 @@ switch (window.__cnblogx_stage) {
     }
     case STAGE_T.LOCAL: {
         const askForExit = () => {
-            if (window.confirm('开发者模式：与本机服务器通信失败，是否重试？')) {
+            if (window.confirm('开发者模式：与本地服务器通信失败，是否重试？')) {
                 window.location.reload();
             } else {
                 window.cnblogx_development(false);
@@ -93,6 +94,11 @@ switch (window.__cnblogx_stage) {
         break;
     }
     case STAGE_T.HTML_READY: {
+        // TIP: 这里已经切换到了本地服务器代码。
+        if (__PRESERVE_CSS !== 'true') {
+            document.head.querySelector('link[href*="custom.css" i]')?.remove();
+        }
+
         afterSetup();
         window.__cnblogx_stage = STAGE_T.LISTENING;
         break;

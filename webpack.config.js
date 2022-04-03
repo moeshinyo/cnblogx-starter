@@ -17,6 +17,7 @@ module.exports = (env, argv) => {
     const STANDALONE_JS = MODE_PRODUCTION && env.STANDALONE_JS;
     const STANDALONE_CSS = MODE_PRODUCTION && env.STANDALONE_CSS;
     const PUBLIC_PATH = env.PUBLIC_PATH ?? '';
+    const PRESERVE_CSS = env.PRESERVE_CSS ?? false;
     const DEV_SERVER_PORT = env.PORT ? env.PORT : 6454;
 
     const TAG_NOREF = 'NOREF';
@@ -55,7 +56,7 @@ module.exports = (env, argv) => {
                     use: [{
                         loader: 'babel-loader', options: {
                             presets: [
-                                ["@babel/preset-env"], 
+                                ['@babel/preset-env'], 
                                 ['@babel/preset-typescript']
                             ]
                         }
@@ -114,6 +115,7 @@ module.exports = (env, argv) => {
                 __TAG_CUSTOM_HTML: JSON.stringify(TAG_CUSTOM_HTML),
                 __DEV_SERVER_PORT: JSON.stringify(`${DEV_SERVER_PORT}`),
                 __CUSTOM_OUTPUT_HTML: JSON.stringify(CUSTOM_OUTPUT_HTML),
+                __PRESERVE_CSS: JSON.stringify(`${PRESERVE_CSS}`), 
             }),
             new HtmlWebpackSkipAssetsPlugin({
                 excludeAssets: []

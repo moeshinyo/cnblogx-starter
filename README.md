@@ -33,7 +33,7 @@ npm install
 
 > 请确保已经完成[首次部署](#首次部署)。
 
-1. 启动本机开发服务器，它将监视代码变化并将其应用到博客页面中：
+1. 启动一个本地服务器，它将监视代码变化并将其应用到博客页面中：
    ```bash
    npm run dev
    ```
@@ -51,7 +51,7 @@ npm install
 4. 再次双击页脚的*Copyright © 你的名字*，可退出开发者模式。
 
 
-# 命令
+# 命令手册
 
 ## 编译命令
 
@@ -59,22 +59,44 @@ npm install
 npm run <script> -- [--env <options>[=<value>]] ...
 ```
 
+---
+
 其中`<script>`为以下任意值：
 
-- `dev`：为调试环境编译：启动本机服务器，监视代码变化并及时更新模块。
+- `dev`：为调试环境编译：启动本地服务器，监视代码变化并及时更新模块。
+
+  ```bash
+  npm run dev
+  ```
+
+  ---
+
 - `build`：为生产环境编译：期望应用到博客园设置时的选择。
+
+  ```bash
+  npm run build
+  ```
+
+  ---
+
 - `packed`：为生产环境编译，默认将所有代码打包为单个`.html`文件。
+
+  ```bash
+  npm run packed
+  ```
+
+---
 
 其中`<options>`，为以下任意值：
 
-- `PORT`：配置调试服务器端口。
+- `PORT`：指定（博客页面发出连接、本地服务器监听）所用的端口。
 
   - `<value>`为一个数字，默认为`6454`。
   - 适用于**为生产环境编译**与**为调试环境编译**。
   - 博客中已有的代码与调试环境的代码应当配置**相同的端口**。
 
   ```bash
-  # 在调试环境下：本机服务器将监听端口8080。
+  # 在调试环境下：本地服务器将监听端口8080。
   npm run dev -- --env PORT=8080 
   # 在开发者模式下：博客页面将从端口8080请求模块更新。
   npm run build -- --env PORT=8080 
@@ -117,7 +139,18 @@ npm run <script> -- [--env <options>[=<value>]] ...
 
   ```bash
   # 将.js文件托管到自己的网站上。
-  npm run packed -- --env STANDALONE_JS --env PUBLIC_PATH="mywebsite.com/scripts/"
+  npm run packed -- --env STANDALONE_JS --env PUBLIC_PATH="//mywebsite.me/scripts/"
+  ```
+  
+  ---
+  
+- `PRESERVE_CSS`：在博客页面接入本地服务器时，不移除原有的CSS样式。
+
+  - 适用于**为调试环境编译**。
+
+  ```bash
+  # 不希望博客上的第三方主题受到影响。
+  npm run dev -- --env PRESERVE_CSS
   ```
 
 ## 控制台命令
