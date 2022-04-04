@@ -6,7 +6,7 @@
 npm init cnblogx [project-name]
 ```
 
-项目建立后，在项目的根目录安装依赖：
+在项目的根目录下执行以下命令，安装依赖：
 
 ```bash
 npm install
