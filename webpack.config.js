@@ -39,6 +39,7 @@ module.exports = (env, argv) => {
             path: path.resolve(__dirname, 'dist'),
             clean: true,
         },
+        devtool: MODE_PRODUCTION ? false : 'inline-source-map', 
         devServer: {
             allowedHosts: 'all',
             port: DEV_SERVER_PORT,
