@@ -1,13 +1,11 @@
 {
-    "include": ["infra/**/*.d.ts"],
+    "include": ["infra/**/*", "src/**/*"],
     "compilerOptions": {
         "allowSyntheticDefaultImports": true,
         "sourceMap": true,
         "noImplicitAny": true, 
         "baseUrl": "./",
-        "paths": {
-            "*": ["*", "infra/*"]
-        }
+        "rootDirs": ["infra", "src"]
     },
     "extends": "@tsconfig/recommended/tsconfig.json"
 }
